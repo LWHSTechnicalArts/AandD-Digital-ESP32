@@ -1,3 +1,10 @@
+# Wiring:
+# CLK → A0
+# DAT → A1
+# 3V  → 3.3V
+# GND → GND
+
+
 import array
 import math
 import board
