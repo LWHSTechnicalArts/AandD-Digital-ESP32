@@ -1,10 +1,5 @@
 # Connect to whichever known WiFi network is available
-# In settings.toml, list your networks in numbered pairs:
-
-#   WIFI_SSID_1 = "HomeNetwork"
-#   WIFI_PASSWORD_1 = "firstpassword"
-#   WIFI_SSID_2 = "SchoolWiFi"
-#   WIFI_PASSWORD_2 = "secondpassword"
+# In settings.toml, list your networks in numbered pairs
 
 import os
 import wifi
@@ -42,7 +37,6 @@ def connect_wifi():
     print("Could not connect to any saved network.")
     return False
 
-# --- Run it once at startup ---------------------------------------------
 # This line is where the function actually runs. It happens one time,
 # before the main loop, because you only need to connect once.
 connect_wifi()
