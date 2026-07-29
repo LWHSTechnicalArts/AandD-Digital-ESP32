@@ -1,6 +1,9 @@
 import os
 import wifi
 
-print(f"Connecting to {os.getenv('CIRCUITPY_WIFI_SSID')}")
-wifi.radio.connect(os.getenv("CIRCUITPY_WIFI_SSID"), os.getenv("CIRCUITPY_WIFI_PASSWORD"))
+ssid = os.getenv("WIFI_SSID_1")
+password = os.getenv("WIFI_PASSWORD_1")
+
+print(f"Connecting to {ssid}")
+wifi.radio.connect(ssid, password)
 print(f"Connected! IP address: {wifi.radio.ipv4_address}")
