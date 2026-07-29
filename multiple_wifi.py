@@ -9,37 +9,48 @@
 import os
 import wifi
 
-# --- Read the networks out of settings.toml -----------------------------
-# Count upward - WIFI_SSID_1, WIFI_SSID_2, and so on - until we ask for a
-# number that isn't there. os.getenv gives back None when a key is missing,
-# and that's our signal to stop looking.
-networks = []
-number = 1
-while True:
-    ssid = os.getenv("WIFI_SSID_" + str(number))
-    password = os.getenv("WIFI_PASSWORD_" + str(number))
-    if ssid is None:
-        break
-    networks.append((ssid, password))
-    number = number + 1
+MAX_NETWORKS = 5   # how many numbered pairs to look for in settings.toml
 
-print("Found", len(networks), "saved networks")
 
-# --- Try each one until something works ---------------------------------
-connected = False
+# --- The function -------------------------------------------------------
+# A function is a named chunk of code that only runs when you call it.
+# Writing it here doesn't do anything yet - it just defines the steps.
+def connect_wifi():
+    """Try each saved network in order. Stops at the first one that works."""
 
-for ssid, password in networks:
-    print("Trying", ssid, "...")
-    try:
-        # timeout keeps us from waiting forever on a network that isn't here
-        wifi.radio.connect(ssid, password, timeout=10)
-        print("Connected to", ssid)
-        print("IP address:", wifi.radio.ipv4_address)
-        connected = True
-        break          # stop as soon as one succeeds
-    except ConnectionError:
-        # Wrong password, or the network isn't in range. Move on.
-        print("No luck with", ssid)
+    for number in range(1, MAX_NETWORKS + 1):
 
-if not connected:
+        # Build the key names to look up: WIFI_SSID_1, WIFI_SSID_2, ...
+        ssid = os.getenv("WIFI_SSID_" + str(number))
+        password = os.getenv("WIFI_PASSWORD_" + str(number))
+
+        # os.getenv gives back None when that key isn't in settings.toml,
+        # so skip any numbers you haven't filled in.
+        if ssid is None:
+            continue
+
+        print("Trying", ssid, "...")
+        try:
+            # timeout keeps us from waiting forever on a network that isn't here
+            wifi.radio.connect(ssid, password, timeout=10)
+            print("Connected to", ssid)
+            print("IP address:", wifi.radio.ipv4_address)
+            return True          # success - leave the function right now
+
+        except ConnectionError:
+            # Wrong password, or the network isn't in range. Try the next one.
+            print("No luck with", ssid)
+
     print("Could not connect to any saved network.")
+    return False
+
+
+# --- Run it once at startup ---------------------------------------------
+# This line is where the function actually runs. It happens one time,
+# before the main loop, because you only need to connect once.
+connect_wifi()
+
+
+# --- Your program goes here ---------------------------------------------
+while True:
+    pass
