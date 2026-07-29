@@ -1,6 +1,6 @@
-WIFI_SSID_1 = "HomeNetwork"
+WIFI_SSID_1 = "SchoolWiFi"
 WIFI_PASSWORD_1 = "firstpassword"
-WIFI_SSID_2 = "SchoolWiFi"
+WIFI_SSID_2 = "HomeNetwork"
 WIFI_PASSWORD_2 = "secondpassword"
 WIFI_SSID_3 = "MyPhoneHotspot"
 WIFI_PASSWORD_3 = "thirdpassword"
