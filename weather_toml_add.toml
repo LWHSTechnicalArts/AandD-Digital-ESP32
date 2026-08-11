@@ -1,0 +1,4 @@
+# 94112, San Francisco. Swap in your own.
+WEATHER_LAT = "37.7211"
+WEATHER_LON = "-122.4426"
+WEATHER_PLACE = "San Francisco"
