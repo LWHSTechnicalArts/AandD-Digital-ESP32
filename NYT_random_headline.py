@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: Unlicense
 #
 # AI-assisted: "Claude (Anthropic)", August 2026
-# Human contribution: circuit design / pin mapping / debugging / testing on hardware
+# Human contribution: idea / circuit design / pin mapping / debugging / testing on hardware
 # Verified: A Kleindolph, August 2026 — tested on Feather ESP32-S3 with Circuitpy v10
 
 # NYT most-popular headlines on the 3.5" TFT FeatherWing — CircuitPython 10
