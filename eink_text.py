@@ -68,4 +68,4 @@ display.refresh()
 print("refreshed")
 
 while True:
-    pass # your additinal code here
+    pass # your additional code here
