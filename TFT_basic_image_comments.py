@@ -1,3 +1,9 @@
+# SPDX-License-Identifier: Unlicense
+#
+# AI-assisted: "Claude (Anthropic)", August 2026
+# Human contribution: idea / circuit design / pin mapping / debugging / testing on hardware
+# Verified: A Kleindolph, August 2026 — tested on Feather ESP32-S3 with Circuitpy v10
+
 # Show a single image on the 3.5" TFT FeatherWing V2
 # Save on the CIRCUITPY drive as code.py
 # Put image.bmp in the top level of the CIRCUITPY drive (not in a folder)
