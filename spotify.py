@@ -1,8 +1,12 @@
+# SPDX-License-Identifier: Unlicense
+# Ported from spotify_api_micro.py (Jeff Trevino) for the separate-TFT setup.
+# Further adapted by A. Kleindolph 
+# AI-assisted: "Claude (Anthropic)", August 2026
+# Human contribution: original code / idea / circuit design / pin mapping / debugging / testing on hardware
+# Verified: A Kleindolph, August 2026 — tested on Feather ESP32-S3 with Circuitpy v10
+
 # Spotify Now Playing
 # Adafruit Feather ESP32-S3 + 3.5" TFT FeatherWing (HX8357, 480x320)
-#
-# Ported from spotify_api_micro.py (Jeff Trevino) for the separate-TFT setup.
-# Further adapted by A Kleindolph with Claude
 
 import os
 import time
