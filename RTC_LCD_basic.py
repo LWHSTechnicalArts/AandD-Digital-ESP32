@@ -1,8 +1,13 @@
+# SPDX-License-Identifier: Unlicense
+#
+# AI-assisted: "Claude (Anthropic)", August 2026
+# Human contribution: idea / circuit design / pin mapping / debugging / testing on hardware
+# Verified: A Kleindolph, August 2026 — tested on Feather ESP32-S3 with Circuitpy v10
+
 # Time and date on the 3.5" TFT FeatherWing V2
 # Works with CircuitPython 10
 # /lib: adafruit_display_text, adafruit_ds3231, adafruit_bus_device,
 #       adafruit_hx8357
-# created in collaboration with Claude
 
 import time
 import board
