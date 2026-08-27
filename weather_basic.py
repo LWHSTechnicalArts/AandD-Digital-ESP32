@@ -1,4 +1,8 @@
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Unlicense
+# AI-assisted: "Claude (Anthropic)", August 2026
+# Human contribution: idea / circuit design / pin mapping / debugging / testing on hardware
+# Verified: A Kleindolph, August 2026 — tested on Feather ESP32-S3 with Circuitpy v10
+
 """Current weather from Open-Meteo — CircuitPython 9/10, Feather ESP32-S3.
 Data by Open-Meteo.com, CC BY 4.0. No API key required.
 Created in collaboration with Claude
