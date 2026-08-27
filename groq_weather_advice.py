@@ -1,7 +1,11 @@
+# SPDX-License-Identifier: Unlicense
+# AI-assisted: "Claude (Anthropic)", August 2026
+# Human contribution: idea / circuit design / pin mapping / debugging / testing on hardware
+# Verified: A Kleindolph, August 2026 — tested on Feather ESP32-S3 with Circuitpy v10
+
 # Weather + Groq clothing advice on the 3.5" TFT FeatherWing — CircuitPython 10
 # /lib needs: adafruit_display_text, adafruit_hx8357,
 #             adafruit_connection_manager, adafruit_requests
-# created in collaboration with Claude
 
 import os
 import time
