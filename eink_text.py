@@ -1,4 +1,9 @@
 # SPDX-License-Identifier: Unlicense
+#
+# AI-assisted: "Claude (Anthropic)", August 2026
+# Human contribution: circuit design / pin mapping / debugging / testing on hardware
+# Verified: A Kleindolph, August 2026 — tested on Feather ESP32-S3 with Circuitpy v10
+
 """Minimal eInk test: prints "Hello dolphin" on the screen.
 Needs the adafruit_display_text library in /lib on CIRCUITPY.
 """
