@@ -1,7 +1,9 @@
 # Muni arrivals on the 3.5" TFT FeatherWing — CircuitPython 10 — fancy edition
 # /lib needs: adafruit_display_text, adafruit_display_shapes, adafruit_hx8357,
 #             adafruit_connection_manager, adafruit_requests
-# Made in collaboration with Claude
+# AI-assisted: "Claude (Anthropic)", November 2026
+# Human contribution: idea / circuit design / pin mapping / debugging / testing on hardware
+# Verified: A Kleindolph, August 2026 — tested on Feather ESP32-S3 with Circuitpy v10
 
 import os
 import time
