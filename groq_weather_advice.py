@@ -7,6 +7,7 @@
 # /lib needs: adafruit_display_text, adafruit_hx8357,
 #             adafruit_connection_manager, adafruit_requests
 
+import ssl
 import os
 import time
 
@@ -20,6 +21,24 @@ from adafruit_display_text import label
 import adafruit_connection_manager
 import adafruit_hx8357
 import adafruit_requests
+
+GROQ_ROOT_CA = """-----BEGIN CERTIFICATE-----
+MIICnzCCAiWgAwIBAgIQf/MZd5csIkp2FV0TttaF4zAKBggqhkjOPQQDAzBHMQsw
+CQYDVQQGEwJVUzEiMCAGA1UEChMZR29vZ2xlIFRydXN0IFNlcnZpY2VzIExMQzEU
+MBIGA1UEAxMLR1RTIFJvb3QgUjQwHhcNMjMxMjEzMDkwMDAwWhcNMjkwMjIwMTQw
+MDAwWjA7MQswCQYDVQQGEwJVUzEeMBwGA1UEChMVR29vZ2xlIFRydXN0IFNlcnZp
+Y2VzMQwwCgYDVQQDEwNXRTEwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARvzTr+
+Z1dHTCEDhUDCR127WEcPQMFcF4XGGTfn1XzthkubgdnXGhOlCgP4mMTG6J7/EFmP
+LCaY9eYmJbsPAvpWo4H+MIH7MA4GA1UdDwEB/wQEAwIBhjAdBgNVHSUEFjAUBggr
+BgEFBQcDAQYIKwYBBQUHAwIwEgYDVR0TAQH/BAgwBgEB/wIBADAdBgNVHQ4EFgQU
+kHeSNWfE/6jMqeZ72YB5e8yT+TgwHwYDVR0jBBgwFoAUgEzW63T/STaj1dj8tT7F
+avCUHYwwNAYIKwYBBQUHAQEEKDAmMCQGCCsGAQUFBzAChhhodHRwOi8vaS5wa2ku
+Z29vZy9yNC5jcnQwKwYDVR0fBCQwIjAgoB6gHIYaaHR0cDovL2MucGtpLmdvb2cv
+ci9yNC5jcmwwEwYDVR0gBAwwCjAIBgZngQwBAgEwCgYIKoZIzj0EAwMDaAAwZQIx
+AOcCq1HW90OVznX+0RGU1cxAQXomvtgM8zItPZCuFQ8jSBJSjz5keROv9aYsAm5V
+sQIwJonMaAFi54mrfhfoFNZEfuNMSQ6/bIBiNLiyoX46FohQvKeIoJ99cx7sUkFN
+7uJW
+-----END CERTIFICATE-----"""
 
 SSID = os.getenv("WIFI_SSID_1")
 PASSWORD = os.getenv("WIFI_PASSWORD_1")
@@ -83,6 +102,9 @@ wifi.radio.connect(SSID, PASSWORD)
 pool = adafruit_connection_manager.get_radio_socketpool(wifi.radio)
 ssl_context = adafruit_connection_manager.get_radio_ssl_context(wifi.radio)
 requests = adafruit_requests.Session(pool, ssl_context)
+groq_ssl = ssl.create_default_context()
+groq_ssl.load_verify_locations(cadata=GROQ_ROOT_CA)
+groq_requests = adafruit_requests.Session(pool, groq_ssl)
 
 while True:
     try:
@@ -111,7 +133,7 @@ while True:
             "reasoning_effort": "low",
         }
         headers = {"Authorization": f"Bearer {GROQ_KEY}"}
-        with requests.post(GROQ_URL, json=body, headers=headers) as response:
+        with groq_requests.post(GROQ_URL, json=body, headers=headers) as response:
             advice = response.json()["choices"][0]["message"]["content"].strip()
 
         print(f"{temp}F, {sky}\n{advice}")
