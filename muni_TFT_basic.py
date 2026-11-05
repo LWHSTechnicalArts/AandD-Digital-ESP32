@@ -46,9 +46,18 @@ ssl_context = adafruit_connection_manager.get_radio_ssl_context(wifi.radio)
 requests = adafruit_requests.Session(pool, ssl_context)
 
 while True:
+    print("start")
     try:
         with requests.get(URL) as response:
-            bus = response.json()[0]  # .json() once — each call is a fetch
+            print("status:", response.status_code)
+            if response.status_code != 200:
+                print(response.text[:300])
+                raise RuntimeError(f"HTTP {response.status_code}")
+            data = response.json()
+        if not isinstance(data, list) or not data:
+            print("unexpected:", str(data)[:300])
+            raise RuntimeError("no prediction data")
+        bus = data[0]
         minutes = [v["minutes"] for v in bus["values"]]
         text.text = (
             f"{bus['route']['title']}\n{bus['stop']['name']}\n\n{minutes[0]} min"
@@ -57,6 +66,6 @@ while True:
         )
         print(text.text.replace("\n", " "))
     except Exception as err:
-        print("failed:", err)
+        print("failed:", type(err).__name__, err)
         text.text = "offline"
     time.sleep(15)
