@@ -5,6 +5,9 @@
 # or run: circup install adafruit_hx8357 adafruit_requests adafruit_display_text):
 #   adafruit_hx8357, adafruit_requests, adafruit_connection_manager,
 #   adafruit_display_text
+# AI-assisted: "Claude (Anthropic)", November 2026
+# Human contribution: original code / idea / circuit design / pin mapping / debugging / testing on hardware
+# Verified: A Kleindolph, November 2026 — tested on Feather ESP32-S3 with Circuitpy v10
 #
 # Credentials go in settings.toml.
 
