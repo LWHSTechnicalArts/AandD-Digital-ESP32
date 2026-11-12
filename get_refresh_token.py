@@ -5,7 +5,6 @@ Run this on your COMPUTER, not on the Feather.
 
 Works with either redirect URI registered in your Spotify app:
   - http://127.0.0.1:8888/callback  (fully automatic)
-  - anything else, e.g. https://example.com/callback  (you paste one URL)
 
 Uses only the Python standard library.
 """
